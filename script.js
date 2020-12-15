@@ -5,11 +5,13 @@ const dayTime = document.querySelector('.daytime'),
     time = document.querySelector('.time'),
     days = document.querySelector('.days');
 
-    let date = new Date(),
+    function helloClock() { 
+        let date = new Date(),
         daySmall = date.toLocaleString('ru', {weekday: 'long'}),
         day = daySmall.charAt(0).toUpperCase() + daySmall.slice(1),
         helloDay,
-        hour = date.getHours(); 
+        hour = date.getHours(),
+        pmAm = date.toLocaleTimeString('en');
         
         if (hour>=5 && hour<12){
             helloDay = "Доброе утро";
@@ -19,13 +21,12 @@ const dayTime = document.querySelector('.daytime'),
             helloDay = "Добрый вечер"; 
         }
 
-    function typeTime() { 
-        let date = new Date(),
-        pmAm = date.toLocaleTimeString('en');
         time.innerHTML = pmAm;
+        weekDay.innerHTML = day;
+        dayTime.innerHTML = helloDay;
     }
-    typeTime();
-    setInterval(typeTime, 1000);
+
+
     function typeDays() {
         let today = new Date();
         let newYear = new Date('31 december 2020');
@@ -34,6 +35,7 @@ const dayTime = document.querySelector('.daytime'),
         days.innerHTML = deadline + ' дней';
     }
     typeDays();
-    setInterval(typeTime, 40000);
-    weekDay.innerHTML = day;
-    dayTime.innerHTML = helloDay;
+    setInterval(typeDays, 40000);
+    setInterval(helloClock, 1000);
+    helloClock();
+    
